@@ -6,17 +6,20 @@ import { HiOutlineMenu, HiOutlineX } from "react-icons/hi";
 
 const Navbar = () => {
   const { user, logoutUser } = useContext(AuthContext);
-  console.log(user)
+
+  console.log(user);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const handleLogOut = async () => {
     try {
       await logoutUser();
-      Swal.fire({
-        icon: "success",
-        title: "Success",
-        text: "Log Out Successful!",
-      });
+      setTimeout(() => {
+        Swal.fire({
+          icon: "success",
+          title: "Success",
+          text: "Log Out Successful!",
+        });
+      }, 0);
     } catch (error) {
       Swal.fire({
         icon: "error",
@@ -34,7 +37,7 @@ const Navbar = () => {
     <>
       <li>
         <NavLink
-          to="/roadMaps"
+          to="/"
           className={({ isActive }) =>
             `block py-2 px-3 rounded-sm md:bg-transparent md:p-0 ${
               isActive
@@ -43,7 +46,49 @@ const Navbar = () => {
             }`
           }
         >
-          RoadMaps
+          Home
+        </NavLink>
+      </li>
+      <li>
+        <NavLink
+          to="/events"
+          className={({ isActive }) =>
+            `block py-2 px-3 rounded-sm md:bg-transparent md:p-0 ${
+              isActive
+                ? "text-blue-700 font-bold"
+                : "text-black dark:text-white"
+            }`
+          }
+        >
+          Events
+        </NavLink>
+      </li>
+      <li>
+        <NavLink
+          to="/add-event"
+          className={({ isActive }) =>
+            `block py-2 px-3 rounded-sm md:bg-transparent md:p-0 ${
+              isActive
+                ? "text-blue-700 font-bold"
+                : "text-black dark:text-white"
+            }`
+          }
+        >
+          Add Event
+        </NavLink>
+      </li>
+      <li>
+        <NavLink
+          to="/my-events"
+          className={({ isActive }) =>
+            `block py-2 px-3 rounded-sm md:bg-transparent md:p-0 ${
+              isActive
+                ? "text-blue-700 font-bold"
+                : "text-black dark:text-white"
+            }`
+          }
+        >
+          My Events
         </NavLink>
       </li>
 
@@ -51,7 +96,7 @@ const Navbar = () => {
         <li>
           <button
             onClick={handleLogOut}
-            className="block py-2 px-3 text-black rounded-sm md:bg-transparent  md:p-0 dark:text-white"
+            className="block py-2 px-3 text-black rounded-sm md:bg-green-100  md:p-2 "
           >
             Log Out
           </button>
@@ -62,7 +107,7 @@ const Navbar = () => {
             <NavLink
               to="/register"
               className={({ isActive }) =>
-                `block py-2 px-3 rounded-sm md:bg-transparent md:p-0 ${
+                `block py-2 px-3 rounded-sm md:bg-green-100  md:p-2 ${
                   isActive
                     ? "text-blue-700 font-bold"
                     : "text-black dark:text-white"
@@ -76,7 +121,7 @@ const Navbar = () => {
             <NavLink
               to="/login"
               className={({ isActive }) =>
-                `block py-2 px-3 rounded-sm md:bg-transparent md:p-0 ${
+                `block py-2 px-3 rounded-sm md:bg-green-100  md:p-2 ${
                   isActive
                     ? "text-blue-700 font-bold"
                     : "text-black dark:text-white"
@@ -94,9 +139,8 @@ const Navbar = () => {
   return (
     <nav className="bg-white dark:bg-gray-900 py-4 sticky z-20 top-0 start-0 border-b border-gray-200 dark:border-gray-600">
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto px-4">
-        {/* Logo */}
         <Link to="/" className="flex items-center space-x-3">
-          <span className="text-black text-xl font-bold">RoadSync</span>
+          <span className="text-black text-xl font-bold">EventPilot</span>
         </Link>
 
         <button
@@ -111,7 +155,7 @@ const Navbar = () => {
             isMobileMenuOpen ? "block" : "hidden"
           } w-full md:flex md:items-center md:w-auto md:order-1`}
         >
-          <ul className="flex flex-col md:flex-row md:space-x-8 md:mt-0 font-medium border border-gray-100 md:border-0 rounded-lg bg-gray-50 md:bg-transparent p-4 md:p-0">
+          <ul className="flex flex-col md:flex-row  items-center md:space-x-8 md:mt-0 font-medium border border-gray-100 md:border-0 rounded-lg bg-gray-50 md:bg-transparent p-4 md:p-0">
             {navLinks}
           </ul>
         </div>

@@ -11,16 +11,15 @@ const AuthProvider = ({ children }) => {
 
  useEffect(() => {
   const token = localStorage.getItem("token");
-  console.log("Stored token:", token); // 👀
+
   if (token) {
     axiosSecure
       .get("/user")
       .then((res) => {
-        console.log("Fetched user:", res.data.user); // 👀
         setUser(res.data.user);
       })
       .catch((err) => {
-        console.error("Failed to fetch user:", err); // 👀
+        console.error("Failed to fetch user:", err);
         localStorage.removeItem("token");
         setUser(null);
       })
@@ -54,6 +53,7 @@ const AuthProvider = ({ children }) => {
     loginUser,
     logoutUser,
     loading,
+   
   };
 
   return (
